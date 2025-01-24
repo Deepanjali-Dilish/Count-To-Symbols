@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Count and Symbol</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Count To Symbol</h1>
+        <div id="input-pages">
+            <label for="base-input">Enter a base</label>
+            <input type="number" id="base-input" placeholder="Enter a base">
+
+            <label for="count-input">Enter the Count</label>
+            <input type="number" id="count-input" placeholder="Enter a number">
+            
+            <button onclick="generateCount()">Generate</button>
+            <div class="output" id="count-output"></div>
+            <button onclick="next()">Next</button>
+        </div>
+
+        <div id="symbol-page" class="hidden">
+            <label for="symbol-input">Enter a number for the symbol</label>
+            <input type="number" id="symbol-input" placeholder="Enter a number">
+            <button onclick="generateSymbol()">Generate</button>
+            <div class="output" id="symbol-output"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
