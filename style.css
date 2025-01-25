@@ -24,7 +24,7 @@ body {
     align-items: center;
     position: relative;
     padding-bottom: 40px;
-    margin-top: 165px;
+    /* margin-top: 165px; */
   }
   
   /* .title{
@@ -79,3 +79,8 @@ body {
     display: none;
   }
 
+@media  screen and (max-width: 425px){
+  h1{
+    font-size: 20px;
+  }
+}

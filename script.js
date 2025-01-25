@@ -7,17 +7,17 @@ const symbolOutput = document.getElementById("symbol-output");
 const baseInput = document.getElementById("base-input");
 
 let countValue = 0;
-let selectedBase = 10; 
+let selectedBase = 10;
 
 function updateBase() {
     const base = baseInput.value.trim();
     if (base) {
-        selectedBase = parseInt(base); 
+        selectedBase = parseInt(base);
     }
 }
 
 function generateCount() {
-    updateBase();  
+    updateBase();
 
     const count = countInput.value.trim();
     if (count === "" || parseInt(count) < 0) {
@@ -27,11 +27,11 @@ function generateCount() {
 
     countValue = parseInt(count);
 
-    const symbols = generateSymbols(selectedBase)
+    const symbols = generateSymbols(selectedBase);
     const base = selectedBase;
 
     let counts = [];
-    for (let i = 0; i < countValue; i++) {
+    for (let i = 0; i <= countValue; i++) {  
         counts.push(getSymbol(i, symbols, base));
     }
 
@@ -48,9 +48,9 @@ function next() {
 }
 
 function generateSymbol() {
-    updateBase();  
+    updateBase();
 
-    const symbols = generateSymbols(selectedBase); 
+    const symbols = generateSymbols(selectedBase);
     const base = selectedBase;
 
     const symbolValue = symbolInput.value.trim();
@@ -61,32 +61,35 @@ function generateSymbol() {
 
     const symbolNumber = parseInt(symbolValue);
 
-    
-    if (symbolNumber === 0) {
-        symbolOutput.innerHTML = `<p><strong>Symbol:</strong> 0</p>`;
-        return;
-    }
-
-    const symbol = getSymbol(symbolNumber - 1, symbols, base);
+    const symbol = getSymbol(symbolNumber, symbols, base); 
 
     symbolOutput.innerHTML = `<p><strong>Symbol:</strong> ${symbol}</p>`;
 }
 
-
 function generateSymbols(base) {
-    const symbols = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
-    return symbols.substring(0, base); 
+    const symbols = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    return symbols.substring(0, base);
 }
 
 function getSymbol(index, symbols, base) {
-    if (index < base) {
-        return symbols[index];
-    } else {
-        let result = '';
-        while (index >= base) {
-            result = symbols[index % base] + result;
-            index = Math.floor(index / base);
-        }
-        return symbols[index] + result;
-    }
+    let result = '';
+    do {
+        result = symbols[index % base] + result;
+        index = Math.floor(index / base);
+    } while (index > 0);
+    return result;
 }
+
+// function getSymbol(index, symbols, base) {
+//     let result = '';
+//     if (index === 0) return symbols[0];
+
+//     while (index >= base) {
+//         result = symbols[index % base] + result;
+//         index = Math.floor(index / base);
+//     }
+//     result = symbols[index] + result;
+//     return result;
+// }
+
+
