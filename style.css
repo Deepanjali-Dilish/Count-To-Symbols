@@ -1,18 +1,136 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    min-height: 100vh;
-    box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 600px; 
+  width: 100%;
+  margin: auto;
+  background: #fff;
+  padding: 18px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-bottom: 40px;
+  transition: max-width 0.3s ease-in-out; 
+}
+
+/*  */
+
+#count-output {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  text-align: center;
+  margin-top: 20px;
+  transition: max-width 0.3s ease-in-out; 
+}
+
+
+
+.heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input:focus{
+  outline: none;
+  border-color: #0056b3;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #b94747;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #db3d3d;
+}
+
+button{
+  border: none;
+}
+
+.output {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  word-wrap: break-word;
+}
+
+.hidden {
+  display: none;
+}
+
+.count-box {
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #0056b3;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+}
+
+@media screen and (min-width: 425px) {
+  h1 {
+      font-size: 20px;
   }
-  
-  .container {
-    max-width: 400px;
+
+  #count-output {
+      grid-template-columns: repeat(2, 1fr)
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  h1 {
+      font-size: 24px;
+  }
+
+  #count-output {
+      grid-template-columns: repeat(3, 1fr); 
+  }
+  .container{
     width: 100%;
     margin: auto;
     background: #fff;
@@ -21,66 +139,58 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: normal;
     position: relative;
     padding-bottom: 40px;
-    /* margin-top: 165px; */
-  }
-  
-  /* .title{
-    position: absolute;
-    top: -121px;
-    left: 12%;
-    margin: 0;
-    color: white;
-    font-size: 24px;
-  } */
-
-  label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .output {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f4f4f4;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    word-wrap: break-word;
-  }
-  
-  .hidden {
-    display: none;
   }
 
-@media  screen and (max-width: 425px){
-  h1{
-    font-size: 20px;
+}
+
+@media screen and (min-width: 1024px) {
+  h1 {
+      font-size: 28px;
+  }
+
+  #count-output {
+      grid-template-columns: repeat(4, 1fr);
+  }
+
+  .container{
+    width: 100%;
+    margin: auto;
+    background: #fff;
+    padding: 18px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    position: relative;
+    padding-bottom: 40px;
   }
 }
+
+@media screen and (min-width: 1330px) {
+  h1{
+    font-size: 30px;
+  }
+   
+  #count-output {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+  .container{
+    width: 100%;
+    margin: auto;
+    background: #fff;
+    padding: 18px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    position: relative;
+    padding-bottom: 40px;
+  }
+}
+

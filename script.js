@@ -10,16 +10,28 @@ let countValue = 0;
 let selectedBase = 10;
 
 function updateBase() {
-    const base = baseInput.value.trim();
+    const base = baseInput.value;
     if (base) {
-        selectedBase = parseInt(base);
+        const parsedBase = parseInt(base);
+
+        if (parsedBase > 36) {
+            alert("Base exceeds the maximum supported value (36). Please enter a base between 2 to 36.");
+            baseInput.value = "";  
+            return false;
+        }
+
+        selectedBase = parsedBase;
     }
+    return true;  
 }
 
 function generateCount() {
-    updateBase();
+    if (!updateBase()) {
+        countOutput.innerHTML = ''; 
+        return; 
+    }
 
-    const count = countInput.value.trim();
+    const count = countInput.value;
     if (count === "" || parseInt(count) < 0) {
         alert("Please enter a valid positive number.");
         return;
@@ -27,15 +39,18 @@ function generateCount() {
 
     countValue = parseInt(count);
 
+    // Dynamically change the max-width of the container, but not for the symbol page
+    document.querySelector(".container").style.maxWidth = "900px"; // Increase width when count is generated
+
     const symbols = generateSymbols(selectedBase);
     const base = selectedBase;
 
     let counts = [];
-    for (let i = 0; i <= countValue; i++) {  
+    for (let i = 0; i <= countValue; i++) {
         counts.push(getSymbol(i, symbols, base));
     }
 
-    countOutput.innerHTML = `<p><strong>Count Sequence:</strong> ${counts.join(" ")}</p>`;
+    countOutput.innerHTML = counts.map(symbol => `<div class="count-box">${symbol}</div>`).join("");
 }
 
 function next() {
@@ -53,7 +68,7 @@ function generateSymbol() {
     const symbols = generateSymbols(selectedBase);
     const base = selectedBase;
 
-    const symbolValue = symbolInput.value.trim();
+    const symbolValue = symbolInput.value;
     if (symbolValue === "" || parseInt(symbolValue) < 0) {
         alert("Please enter a valid positive number.");
         return;
@@ -61,7 +76,7 @@ function generateSymbol() {
 
     const symbolNumber = parseInt(symbolValue);
 
-    const symbol = getSymbol(symbolNumber, symbols, base); 
+    const symbol = getSymbol(symbolNumber, symbols, base);
 
     symbolOutput.innerHTML = `<p><strong>Symbol:</strong> ${symbol}</p>`;
 }
@@ -73,23 +88,13 @@ function generateSymbols(base) {
 
 function getSymbol(index, symbols, base) {
     let result = '';
-    do {
+    if (index === 0) return symbols[0];
+
+    while (index >= base) {
         result = symbols[index % base] + result;
         index = Math.floor(index / base);
-    } while (index > 0);
+    }
+    result = symbols[index] + result;
     return result;
 }
-
-// function getSymbol(index, symbols, base) {
-//     let result = '';
-//     if (index === 0) return symbols[0];
-
-//     while (index >= base) {
-//         result = symbols[index % base] + result;
-//         index = Math.floor(index / base);
-//     }
-//     result = symbols[index] + result;
-//     return result;
-// }
-
 

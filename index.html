@@ -8,10 +8,12 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Count To Symbol</h1>
+        <div class="heading">
+            <h1 class="title">Count To Symbol</h1>
+        </div>
         <div id="input-pages">
             <label for="base-input">Enter a base</label>
-            <input type="number" id="base-input" placeholder="Enter a base">
+            <input type="number" id="base-input" min="2" max="36" placeholder="Enter a number">
 
             <label for="count-input">Enter the Count</label>
             <input type="number" id="count-input" placeholder="Enter a number">
@@ -24,7 +26,7 @@
         <div id="symbol-page" class="hidden">
             <label for="symbol-input">Enter a number for the symbol</label>
             <input type="number" id="symbol-input" placeholder="Enter a number">
-            <button onclick="generateSymbol()">Generate</button>
+            <button onclick="generateSymbol()">Convert</button>
             <div class="output" id="symbol-output"></div>
         </div>
     </div>
@@ -32,4 +34,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
